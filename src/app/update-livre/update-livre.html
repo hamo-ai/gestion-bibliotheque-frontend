@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h4>Modifier le livre</h4>
+          <form>
+            <div class="mb-2">
+              <label>ID</label>
+              <input type="text" name="id" class="form-control" [(ngModel)]="currentLivre().idLivre" disabled>
+            </div>
+            <div class="mb-2">
+              <label>Titre</label>
+              <input type="text" name="titre" class="form-control" [(ngModel)]="currentLivre().titre">
+            </div>
+            <div class="mb-2">
+              <label>Auteur</label>
+              <input type="text" name="auteur" class="form-control" [(ngModel)]="currentLivre().auteur">
+            </div>
+            <div class="mb-2">
+              <label>Année de publication</label>
+              <input type="number" name="annee" class="form-control" [(ngModel)]="currentLivre().anneePublication">
+            </div>
+            <div class="mb-2">
+              <label>Catégorie</label>
+              <select name="categorie" class="form-select" [(ngModel)]="updatedCatId">
+                @for (c of categories(); track c.idCat) {
+                  <option [ngValue]="c.idCat">{{ c.nomCat }}</option>
+                }
+              </select>
+            </div>
+            <button type="button" class="btn btn-success mt-2" (click)="updateLivre()">Modifier</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

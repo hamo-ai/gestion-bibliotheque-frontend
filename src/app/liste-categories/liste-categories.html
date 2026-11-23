@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h4>Gestion des catégories</h4>
+
+      <!-- Formulaire visible seulement pour l'ADMIN -->
+      @if (authService.isAdmin()) {
+        <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+          <app-update-categorie
+            [categorie]="updatedCat()"
+            [ajout]="ajout()"
+            (categorieUpdated)="categorieUpdated($event)">
+          </app-update-categorie>
+        </div>
+      }
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th><th>Nom Catégorie</th>
+            @if (authService.isAdmin()) { <th></th> }
+          </tr>
+        </thead>
+        <tbody>
+          @for (cat of categories(); track cat.idCat) {
+            <tr>
+              <td>{{ cat.idCat }}</td>
+              <td>{{ cat.nomCat }}</td>
+              @if (authService.isAdmin()) {
+                <td><a class="btn btn-success" (click)="updateCat(cat)">Editer</a></td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

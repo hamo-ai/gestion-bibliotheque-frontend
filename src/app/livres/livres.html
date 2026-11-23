@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body">
+      <h4>Liste des livres</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th><th>Titre</th><th>Auteur</th><th>Année</th><th>Catégorie</th>
+            @if (authService.isAdmin()) { <th>Actions</th> }
+          </tr>
+        </thead>
+        <tbody>
+          @for (l of livres(); track l.idLivre) {
+            <tr>
+              <td>{{ l.idLivre }}</td>
+              <td>{{ l.titre }}</td>
+              <td>{{ l.auteur }}</td>
+              <td>{{ l.anneePublication }}</td>
+              <td>{{ l.categorie?.nomCat }}</td>
+              <!-- Supprimer / Modifier : seulement pour l'ADMIN -->
+              @if (authService.isAdmin()) {
+                <td>
+                  <a class="btn btn-danger me-2" (click)="supprimerLivre(l)">Supprimer</a>
+                  <a class="btn btn-success" [routerLink]="['/update-livre', l.idLivre]">Modifier</a>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

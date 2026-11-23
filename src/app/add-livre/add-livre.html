@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h4>Ajouter un livre</h4>
+          <form #f="ngForm">
+            <div class="mb-2">
+              <label>Titre</label>
+              <input type="text" name="titre" class="form-control" [(ngModel)]="newLivre.titre" required>
+            </div>
+            <div class="mb-2">
+              <label>Auteur</label>
+              <input type="text" name="auteur" class="form-control" [(ngModel)]="newLivre.auteur" required>
+            </div>
+            <div class="mb-2">
+              <label>Année de publication</label>
+              <input type="number" name="annee" class="form-control" [(ngModel)]="newLivre.anneePublication">
+            </div>
+            <div class="mb-2">
+              <label>Catégorie</label>
+              <select name="categorie" class="form-select" [(ngModel)]="newIdCat" required>
+                @for (c of categories(); track c.idCat) {
+                  <option [ngValue]="c.idCat">{{ c.nomCat }}</option>
+                }
+              </select>
+            </div>
+            <button type="button" class="btn btn-primary mt-2" [disabled]="f.invalid" (click)="addLivre()">
+              Ajouter
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
